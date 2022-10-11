@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import AboutPage from './page/AboutPage'
+import HomePage from './page/HomePage'
 import AdminLayout from './page/layout/AdminLayout'
 import WebsiteLayout from './page/layout/WebsiteLayout'
 
@@ -10,19 +11,20 @@ function App() {
 
   return (
     <>
-        <div className='App'>
+      <div className='App'>
 
-          <Routes>
-            {/* clients */}
-            <Route path='/' element={< WebsiteLayout />} >
-              <Route path='about' element={< AboutPage/>} />
-            </Route>
-            {/* admin */}
-            <Route path="admin" element={< AdminLayout />} >
+        <Routes>
+          {/* clients */}
+          <Route path='/' element={< WebsiteLayout />} >
+            <Route index element={<HomePage />} />
+            <Route path='about' element={< AboutPage />} />
+          </Route>
+          {/* admin */}
+          <Route path="admin" element={< AdminLayout />} >
 
-            </Route>
-          </Routes>
-        </div>
+          </Route>
+        </Routes>
+      </div>
     </>
   )
 }
