@@ -8,6 +8,8 @@ const WebsiteLayout = (props: Props) => {
     <div>
       <Header />
      <Outlet />
+     <Footer />
+
     </div>
   )
 }
