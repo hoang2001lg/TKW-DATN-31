@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import AboutPage from './page/AboutPage'
+import Ourteam from './page/OurTeam'
 import AdminLayout from './page/layout/AdminLayout'
 import WebsiteLayout from './page/layout/WebsiteLayout'
 
@@ -16,6 +17,7 @@ function App() {
             {/* clients */}
             <Route path='/' element={< WebsiteLayout />} >
               <Route path='about' element={< AboutPage/>} />
+              <Route path='ourteam' element={<Ourteam/>} />
             </Route>
             {/* admin */}
             <Route path="admin" element={< AdminLayout />} >
