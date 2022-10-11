@@ -3,7 +3,7 @@ import React from 'react'
 type Props = {}
 
 const OurTeam = (props: Props) => {
-  return (
+    return (
     <section className="team-section team-page spad">   
     <div className="container">
         <div className="row">
