@@ -7,7 +7,6 @@ import "../templace/css/barfiller.css";
 import "../templace/css/magnific-popup.css";
 import "../templace/css/slicknav.min.css";
 import "../templace/css/style.css";
-import LogoWebSite from '../templace/img/logo.png'
 import { Link } from 'react-router-dom';
 
 type Props = {}
@@ -63,7 +62,7 @@ const Header = (props: Props) => {
             <div className="col-lg-3">
               <div className="logo">
                 <Link to="./index.html">
-                  <img src={LogoWebSite} alt="" />
+                  <img src={""} alt="" />
                 </Link>
               </div>
             </div>

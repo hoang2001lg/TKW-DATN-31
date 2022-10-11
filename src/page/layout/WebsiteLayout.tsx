@@ -5,13 +5,11 @@ type Props = {}
 
 const WebsiteLayout = (props: Props) => {
   return (
-    <>
+    <div>
       <Header />
-        <main>
-          <Outlet />
-        </main>
-      <Footer />
-    </>
+     <Outlet />
+     <Footer />
+     </div>
   )
 }
 
