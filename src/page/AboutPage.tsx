@@ -334,7 +334,6 @@ const AboutPage = (props: Props) => {
         </section>
       </main>
 
-      <Footer />
     </>
   );
 };
