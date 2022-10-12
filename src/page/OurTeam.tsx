@@ -7,7 +7,7 @@ const OurTeam = (props: Props) => {
     <section className="team-section team-page spad">   
     <div className="container">
         <div className="row">
-        <div className="col-lg-12">
+        <div className="col-lg-12">   
             <div className="team-title">
             <div className="section-title">
                 <span>Our Team</span>
