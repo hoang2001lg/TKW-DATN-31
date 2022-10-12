@@ -6,7 +6,7 @@ const OurTeam = (props: Props) => {
     return (
     <section className="team-section team-page spad">   
     <div className="container">
-        <div className="row">
+        <div className="row">git
         <div className="col-lg-12">   
             <div className="team-title">
             <div className="section-title">
@@ -14,6 +14,7 @@ const OurTeam = (props: Props) => {
                 <h2>TRAIN WITH EXPERTS</h2>
             </div>
             <a href="#" className="primary-btn btn-normal appoinment-btn">appointment</a>
+            
             </div>
         </div>
         </div>
