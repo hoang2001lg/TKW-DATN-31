@@ -12,6 +12,8 @@ import { addpack, listpack, removepack, updatepack } from './API/packages'
 import ListPackages from './page/admin/listPackages/ListPackages'
 import AddPackages from './page/admin/listPackages/AddPackages'
 import EditPackages from './page/admin/listPackages/EditPackages'
+import { ContactType } from './Type/Contact'
+import { addcontact, listcontact } from './API/contact'
 import ListCoach from './page/admin/Coach/ListCoach'
 import AddCoach from './page/admin/Coach/AddCoach'
 import EditCoach from './page/admin/Coach/EditCoach'
@@ -21,6 +23,7 @@ import { addCoach, listCoach, removeCoach, updateCoach } from './API/Coach'
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
   const [Coachs, setCoachs] = useState<CoachType[]>([])
+  const [contacts, setContacts] = useState<ContactType[]>([])
   useEffect(() => {
     const getCoachs = async () => {
       const { data } = await listCoach();
@@ -45,6 +48,7 @@ function App() {
 
     }
   }
+//  Packages
   useEffect(() => {
     const getPackagess = async () => {
       const { data } = await listpack();
@@ -52,20 +56,20 @@ function App() {
     }
     getPackagess();
   }, [])
-  //delete product
+  //delete packages
   const onHandleremovePack = async (id: number) => {
     if (window.confirm('Are you sure you want to remove  ?')) {
     removepack(id)
     setPackagess(packagess.filter(item => item.id !== id));
     }
   }
-  //add product
+  //add packages
   const onhandlerAddPack = async (packages: PackagesType) => {
     const { data } = await addpack(packages)
     setPackagess([...packagess, data])
     alert("More success!");
   }
-  // update product
+  // update packages
   const onHandlerUpdatePack = async (packages: PackagesType) => {
     try {
       const { data } = await updatepack(packages);
@@ -76,6 +80,21 @@ function App() {
     } catch (error) {
     }
   }
+// Contact
+useEffect(() => {
+  const getContacts = async () => {
+    const { data } = await listcontact();
+    setContacts(data);
+  }
+  getContacts();
+}, [])
+// add contact
+const onhandlerAddContact = async (contact: ContactType) => {
+  const { data } = await addcontact(contact)
+  setPackagess([...contacts, data])
+  alert("More success!");
+}
+
 
   return (
     <>
@@ -87,7 +106,7 @@ function App() {
                <Route index element={<HomePage />} />
               <Route path='about' element={< AboutPage/>} />
               <Route path='ourteam' element={<Ourteam/>} />
-              <Route path='contact' element={< Contact/>} />
+              <Route path='contact' element={< Contact onAddContact={onhandlerAddContact}/>} />
             </Route>
             {/* admin */}
             <Route path="admin" element={< AdminLayout />} >
