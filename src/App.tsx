@@ -14,11 +14,41 @@ import AddPackages from './page/admin/listPackages/AddPackages'
 import EditPackages from './page/admin/listPackages/EditPackages'
 import { ContactType } from './Type/Contact'
 import { addcontact, listcontact } from './API/contact'
+import ListCoach from './page/admin/Coach/ListCoach'
+import AddCoach from './page/admin/Coach/AddCoach'
+import EditCoach from './page/admin/Coach/EditCoach'
+import { CoachType } from './Type/CoachType'
+import { addCoach, listCoach, removeCoach, updateCoach } from './API/Coach'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
+  const [Coachs, setCoachs] = useState<CoachType[]>([])
   const [contacts, setContacts] = useState<ContactType[]>([])
-// Packages
+  useEffect(() => {
+    const getCoachs = async () => {
+      const { data } = await listCoach();
+      setCoachs(data);
+    }
+    getCoachs();
+  }, []);
+
+  const onHandleAddCoach = async (coach: any) => {
+    const { data } = await addCoach(coach);
+    setCoachs([...Coachs, data]);
+  }
+  const onHandleRemoveCoach = async (id: number) => {
+    removeCoach(id);
+    setCoachs(Coachs.filter(item => item.id !== id));
+  }
+  const onHandleUpdateCoach = async (coachs: CoachType) => {
+    try {
+      const { data } = await updateCoach(coachs);
+      setCoachs(Coachs.map(item => item.id === data.id ? coachs : item))
+    } catch (error) {
+
+    }
+  }
+//  Packages
   useEffect(() => {
     const getPackagess = async () => {
       const { data } = await listpack();
@@ -80,6 +110,9 @@ const onhandlerAddContact = async (contact: ContactType) => {
             </Route>
             {/* admin */}
             <Route path="admin" element={< AdminLayout />} >
+              <Route path='coach' element={< ListCoach coachs={Coachs} onRemoveCoach={onHandleRemoveCoach} />} />
+              <Route path='coach/add' element={< AddCoach  onAddCoach={onHandleAddCoach} />} />
+              <Route path='coach/:id/edit' element={< EditCoach onUpdateCoach={onHandleUpdateCoach} />} />
             </Route>
             <Route path='packagess'>
             <Route index element={<ListPackages packagess={packagess} onRemovePack={onHandleremovePack} />} />
