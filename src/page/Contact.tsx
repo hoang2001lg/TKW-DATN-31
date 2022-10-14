@@ -5,7 +5,7 @@ type Props = {}
 const Contact = (props: Props) => {
   return (
     <div>
-   <div>
+      <div>
   <section className="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
     <div className="container">
       <div className="row">
@@ -22,6 +22,8 @@ const Contact = (props: Props) => {
       </div>
     </div>
   </section>
+  {/* Breadcrumb Section End */}
+  {/* Contact Section Begin */}
   <section className="contact-section spad">
     <div className="container">
       <div className="row">
