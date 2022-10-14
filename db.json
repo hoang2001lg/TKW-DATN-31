@@ -1,4 +1,60 @@
 {
-    "Coachs":[],
-    "Contacts":[]
+  "Coachs": [],
+  "Contacts": [],
+  "packagess": [
+    {
+      "id": 1,
+      "name": "Gói 30 ngày",
+      "subject": "Boxing",
+      "category": "Có PT",
+      "price": "1400",
+      "price_sale": "1000",
+      "act": "hoạt động 3 ngày trên 1 tuần nhé!! haha"
+    },
+    {
+      "id": 2,
+      "name": "Gói 60 ngày",
+      "subject": "Boxing",
+      "category": "Có PT",
+      "price": 2800,
+      "price_sale": 2400,
+      "act": "hoạt động 5 ngày trên 1 tuần nhé"
+    },
+    {
+      "id": 3,
+      "name": "Gói 90 ngày",
+      "subject": "Boxing",
+      "category": "Có PT",
+      "price": 4200,
+      "price_sale": 3800,
+      "act": "hoạt động 3 ngày trên 1 tuần nhé hehe"
+    },
+    {
+      "id": 4,
+      "name": "Gói 30 ngày",
+      "subject": "Gym",
+      "category": "Có PT",
+      "price": 1600,
+      "price_sale": 1300,
+      "act": "hoạt động 3 ngày trên 1 tuần nhé"
+    },
+    {
+      "id": 5,
+      "name": "Gói 60 ngày",
+      "subject": "Gym",
+      "category": "Có PT",
+      "price": 3200,
+      "price_sale": 2400,
+      "act": "hoạt động 3 ngày trên 1 tuần nhé"
+    },
+    {
+      "name": "kick boxing",
+      "subject": "Boxing",
+      "category": "Có PT",
+      "price": "132133",
+      "price_sale": "15000",
+      "act": "quá ok luônnn",
+      "id": 6
+    }
+  ]
 }
