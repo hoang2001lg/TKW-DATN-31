@@ -1,8 +1,27 @@
 import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
-type Props = {}
+type Input = {
+  name : string;
+  email: string;
+  phone: number;
+  comment: string
+}
 
-const Contact = (props: Props) => {
+type AddContactProps = {
+  onAddContact: (contacts: Input) => void
+}
+
+const Contact = (props: AddContactProps) => {
+  const { register, handleSubmit, formState: { errors } } = useForm<Input>();
+    const navigate = useNavigate()
+  
+    const onSubmit: SubmitHandler<Input> = (data) => {
+      props.onAddContact(data)
+      navigate('/')
+  
+    }
   return (
     <div>
       <div>
@@ -55,11 +74,11 @@ const Contact = (props: Props) => {
         </div>
         <div className="col-lg-6">
           <div className="leave-comment">
-            <form action="#">
-              <input type="text" placeholder="Name" />
-              <input type="text" placeholder="Email" />
-              <input type="text" placeholder="Website" />
-              <textarea placeholder="Comment" defaultValue={""} />
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input type="text" {...register('name')} placeholder="name" />
+              <input type="text" {...register('email')} placeholder="email" />
+              <input type="text" {...register('phone')} placeholder="phone" />
+              <textarea {...register('comment')} placeholder="comment" defaultValue={""} />
               <button type="submit">Submit</button>
             </form>
           </div>
