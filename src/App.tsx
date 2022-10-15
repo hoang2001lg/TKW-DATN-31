@@ -19,11 +19,17 @@ import AddCoach from './page/admin/Coach/AddCoach'
 import EditCoach from './page/admin/Coach/EditCoach'
 import { CoachType } from './Type/CoachType'
 import { addCoach, listCoach, removeCoach, updateCoach } from './API/Coach'
+import {Receptionists} from '../src/Type/receptionists'
+import {addReceptionist, listReceptionist, removeReceptionist, updateReceptionist} from '../src/API/receptionists'
+import ListReceptionist from './page/admin/listReceptionists/ListReceptionist'
+import AddReceptionist from './page/admin/listReceptionists/AddReceptionist'
+import EditReceptionist from './page/admin/listReceptionists/EditReceptionist'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
   const [Coachs, setCoachs] = useState<CoachType[]>([])
   const [contacts, setContacts] = useState<ContactType[]>([])
+  const [receptionists,setReceptionists] = useState<Receptionists[]>([])
   useEffect(() => {
     const getCoachs = async () => {
       const { data } = await listCoach();
@@ -94,6 +100,37 @@ const onhandlerAddContact = async (contact: ContactType) => {
   setPackagess([...contacts, data])
   alert("More success!");
 }
+// Receptionists
+useEffect(()=>{
+  const getReceptionists = async ()=>{
+    const {data} = await listReceptionist();
+    setReceptionists(data);
+  }
+  getReceptionists();
+},[])
+//delete receptionists
+const onHandleremoveReceptionist = async (id: number) => {
+  removeReceptionist(id)
+  setReceptionists(receptionists.filter(item => item.id !== id));
+}
+//add receptionists
+const onhandlerAddReceptionist = async(receptionist:Receptionists)=>{
+  const {data} = await addReceptionist(receptionist)
+  setReceptionists([...receptionists,data])
+}
+// update receptions
+const onHandlerUpdateReceptionist = async (receptionist:Receptionists)=>{
+  try {
+    const { data } = await updateReceptionist(receptionist);
+    setReceptionists(receptionists.map(item => item.id === data.id ? data : item))
+    if (data) {
+      alert("Update successful!");
+    }
+  } catch (error) {
+  }
+}
+
+
 
 
   return (
@@ -118,6 +155,11 @@ const onhandlerAddContact = async (contact: ContactType) => {
             <Route index element={<ListPackages packagess={packagess} onRemovePack={onHandleremovePack} />} />
             <Route path='add' element={<AddPackages onAddPack={onhandlerAddPack} />} />
             <Route path=':id/edit' element={<EditPackages onUpdatePack={onHandlerUpdatePack} />} />
+          </Route>
+          <Route path="receptionist">
+          <Route index element={<ListReceptionist receptionist={receptionists} onRemove={onHandleremoveReceptionist} />} /> 
+          <Route path='add' element={<AddReceptionist onAdd={onhandlerAddReceptionist}/>}/> 
+          <Route path=':id/edit' element={<EditReceptionist onUpdate={onHandlerUpdateReceptionist}/>}/> 
           </Route>
         </Routes>
       </div>
