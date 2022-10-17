@@ -21,13 +21,19 @@ import { CoachType } from './Type/CoachType'
 import { addCoach, listCoach, removeCoach, updateCoach } from './API/Coach'
 import {Receptionists} from '../src/Type/receptionists'
 import {addReceptionist, listReceptionist, removeReceptionist, updateReceptionist} from '../src/API/receptionists'
+import { addSubject, listSubject, removeSubject, updateSubject } from './API/subject'
 import ListReceptionist from './page/admin/listReceptionists/ListReceptionist'
 import AddReceptionist from './page/admin/listReceptionists/AddReceptionist'
 import EditReceptionist from './page/admin/listReceptionists/EditReceptionist'
+import { TypeSubject } from './Type/TypeSubject'
+import ListSubject from './page/admin/subject/ListSubject'
+import Addsubject from './page/admin/subject/AddSubject'
+import Editsubject from './page/admin/subject/EditSubject'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
   const [Coachs, setCoachs] = useState<CoachType[]>([])
+  const [subjects, setSubjects] = useState<TypeSubject[]>([]);
   const [contacts, setContacts] = useState<ContactType[]>([])
   const [receptionists,setReceptionists] = useState<Receptionists[]>([])
   useEffect(() => {
@@ -129,7 +135,31 @@ const onHandlerUpdateReceptionist = async (receptionist:Receptionists)=>{
   } catch (error) {
   }
 }
+//Subject start
 
+useEffect(() => {
+  const getSubject = async () => {
+    const { data } = await listSubject();
+    setSubjects(data);
+  };
+  getSubject();
+}, [])
+const onHandleRemoveSubject = (id: number) => {
+  if (window.confirm('Are you sure you want to remove  ?')) {
+    removeSubject(id);
+    setSubjects(subjects.filter(item => item.id !== id));
+  }
+}
+const onHandleAddSubject = async (subject: TypeSubject) => {
+  const { data } = await addSubject(subject);
+  setSubjects([...subjects, data]);
+  alert("Success!");
+}
+const onHandleUpdateSubject = async (subject: TypeSubject) => {
+  const { data } = await updateSubject(subject);
+  setSubjects(subjects.map(item => item.id == data.id ? data : item));
+}
+//Subject End
 
 
 
@@ -160,6 +190,11 @@ const onHandlerUpdateReceptionist = async (receptionist:Receptionists)=>{
           <Route index element={<ListReceptionist receptionist={receptionists} onRemove={onHandleremoveReceptionist} />} /> 
           <Route path='add' element={<AddReceptionist onAdd={onhandlerAddReceptionist}/>}/> 
           <Route path=':id/edit' element={<EditReceptionist onUpdate={onHandlerUpdateReceptionist}/>}/> 
+          </Route>
+          <Route path='subject'>
+            <Route index element={<ListSubject subjects={subjects} onRemove={onHandleRemoveSubject} />} />
+            <Route path='add' element={<Addsubject onAddSubject={onHandleAddSubject} />} />
+            <Route path=':id/edit' element={<Editsubject onUpdateSubject={onHandleUpdateSubject} />} />
           </Route>
         </Routes>
       </div>
