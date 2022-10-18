@@ -136,5 +136,15 @@
       "act": "quá ok luônnn",
       "id": 6
     }
+  ],
+  "subjects": [
+    {
+      "name": "Nguyễn Anh Tú",
+      "id": 1
+    },
+    {
+      "name": "Nguyễn Quang Huy",
+      "id": 2
+    }
   ]
 }
