@@ -49,7 +49,7 @@ const ListCoach = (props: CoachManagerProps) => {
                     className="text-sm font-medium text-gray-900 px-6 py-4 border"
                   >
                     <button className=" bg-green-500 text-white ml-10">
-                      <a href="admin/coach/add">ADD NEW</a>
+                      <a href="coach/add">ADD NEW</a>
                     </button>
                   </td>
                 </thead>
@@ -85,7 +85,7 @@ const ListCoach = (props: CoachManagerProps) => {
                         <div className="mt-4">
                           <Link
                             className="rounded-md bg-blue-400 text-white mt-20 mr-2"
-                            to={`/receptions/${item.id}/edit`}
+                            to={`${item.id}/edit`}
                           >
                             UPDATE
                           </Link>

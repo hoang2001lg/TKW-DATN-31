@@ -23,7 +23,7 @@ const AddCoach = (props: CoachsAddProps) => {
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<Inputs> = (dataInput) => {
     props.onAddCoach(dataInput);
-    navigate("/coach");
+    navigate("/admin/coach");
   };
   return (
     <div>
