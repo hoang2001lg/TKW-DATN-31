@@ -34,7 +34,7 @@ const EditCoach = (props: CoachEditProps) => {
 
     const onSubmit: SubmitHandler<FormInputs> = data => {
         props.onUpdateCoach(data)
-        navigate("/coach");
+        navigate("/admin/coach");
     }
   return (
     <div>

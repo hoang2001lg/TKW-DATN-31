@@ -477,6 +477,7 @@ const AdminLayout = (props: Props) => {
                 </li>
 
             </ul>
+            <Outlet/>
             </aside>
 
 
