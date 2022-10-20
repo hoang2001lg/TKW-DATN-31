@@ -3,10 +3,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { readCoach } from '../../../API/Coach';
 import { CoachType } from '../../../Type/CoachType';
+import { TypeSubject } from '../../../Type/TypeSubject';
 
 type CoachEditProps = {
   onUpdateCoach: (coachs: CoachType) => void
-
+  subjects: TypeSubject[];
 
 }
 type FormInputs = {
@@ -100,13 +101,15 @@ const EditCoach = (props: CoachEditProps) => {
                 Bộ Môn<span className="text-red-500">*</span>
               </label>
               <br />
-              <input
-                type="text"
-                className="w-100 p-3 border border-gray-300 p-2 w-full"
-                {...register("subject")}
-                placeholder="Bộ Môn"
-              />
-            </div>
+              <select id="subject" name="subject" className="w-100 p-3 border border-gray-300 p-2 w-full">
+                </select>
+                {props.subjects.map((childsubject)=>{
+                  return(
+                    <option key={childsubject.name}>{childsubject.name}</option>
+                    )
+                  }
+                  )}
+              </div>
             <div className="mb-3">
               <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
                 Trạng Thái<span className="text-red-500">*</span>
