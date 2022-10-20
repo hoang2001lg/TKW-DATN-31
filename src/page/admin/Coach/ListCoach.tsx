@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { CoachType } from "../../../Type/CoachType";
+import { TypeSubject } from "../../../Type/TypeSubject";
 type CoachManagerProps = {
   coachs: CoachType[];
-
   onRemoveCoach: (id: number) => void;
 };
 

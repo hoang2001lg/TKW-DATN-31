@@ -328,7 +328,7 @@ const AdminLayout = (props: Props) => {
                 className="nav-link collapsed"
                 data-bs-target="#forms-nav"
                 data-bs-toggle="collapse"
-                href="coach"
+                href="admin/coach"
               >
                 <i className="bi bi-journal-text" />
                 <span>Huấn luyện viên</span>
