@@ -195,6 +195,7 @@ const onHandleUpdateSubject = async (subject: TypeSubject) => {
             <Route index element={<ListSubject subjects={subjects} onRemove={onHandleRemoveSubject} />} />
             <Route path='add' element={<Addsubject onAddSubject={onHandleAddSubject} />} />
             <Route path=':id/edit' element={<Editsubject onUpdateSubject={onHandleUpdateSubject} />} />
+            {/* Subject */}
           </Route>
         </Routes>
       </div>
