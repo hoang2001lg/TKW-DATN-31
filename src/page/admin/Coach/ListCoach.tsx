@@ -10,7 +10,7 @@ type CoachManagerProps = {
 const ListCoach = (props: CoachManagerProps) => {
   return (
     <div>
-      <h2 className="mx-auto text-blue-600 text-4xl">Receptionists List</h2>
+      <h2 className="mx-auto text-blue-600 text-4xl">Coach List</h2>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -48,7 +48,7 @@ const ListCoach = (props: CoachManagerProps) => {
                     scope="col-2"
                     className="text-sm font-medium text-gray-900 px-6 py-4 border"
                   >
-                    <button className=" bg-green-500 text-white ml-10">
+                    <button className=" bg-info text-white ml-10">
                       <a href="coach/add">ADD NEW</a>
                     </button>
                   </td>
@@ -83,14 +83,16 @@ const ListCoach = (props: CoachManagerProps) => {
                           {item.action}
                         </td>
                         <div className="mt-4">
+                          <button className="bg-secondary text-white ml-10">
                           <Link
-                            className="rounded-md bg-blue-400 text-white mt-20 mr-2"
+                            className=""
                             to={`${item.id}/edit`}
                           >
                             UPDATE
                           </Link>
+                          </button>
                           <button
-                            className="bg-red-500 text-white"
+                            className="bg-danger text-white"
                             onClick={() => props.onRemoveCoach(item.id)}
                           >
                             DELETE
