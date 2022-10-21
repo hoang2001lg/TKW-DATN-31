@@ -98,7 +98,7 @@ const AddCoach = (props: CoachsAddProps) => {
                     )
                   }
                   )}
-              </div>
+            </div>
             <div className="mb-3">
               <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
                 Trạng Thái<span className="text-red-500">*</span>
