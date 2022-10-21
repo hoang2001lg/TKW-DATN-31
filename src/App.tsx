@@ -21,6 +21,7 @@ import NewsList from './page/admin/NewsList/NewsList'
 import { PostsType } from './Type/PostsType'
 import { addPosts, Postslist, removePosts, updatePosts } from './API/Newlist'
 import AddNews from './page/admin/NewsList/AddNews'
+import EditNews from './page/admin/NewsList/EditNews'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
@@ -125,7 +126,7 @@ function App() {
               <Route path='coach/:id/edit' element={< EditCoach onUpdateCoach={onHandleUpdateCoach} subjects={[]} />} />
               <Route path='Posts' element = {< NewsList PostsList = {Posts}  onRemovePosts ={onHandleRemovePosts} />} />
               <Route path='Posts/add' element={< AddNews  onAddPosts={onHandleAddPosts} subjects={[]}  />} />
-              {/* <Route path='Posts/:id/edit' element={< EditNews onUpdatePosts={onHandleUpdatePosts} subjects={[]} />} /> */}
+              <Route path='Posts/:id/edit' element={< EditNews onUpdatePost={onHandleUpdatePosts} subjects={[]} />} />
             </Route>
             <Route path='packagess'>
             <Route index element={<ListPackages packagess={packagess} onRemovePack={onHandleremovePack} />} />
