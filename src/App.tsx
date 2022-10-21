@@ -22,11 +22,20 @@ import { PostsType } from './Type/PostsType'
 import { addPosts, Postslist, removePosts, updatePosts } from './API/Newlist'
 import AddNews from './page/admin/NewsList/AddNews'
 import EditNews from './page/admin/NewsList/EditNews'
+import { addcontact, listcontact } from './API/contact'
+import { ContactType } from './Type/Contact'
+import { addsche, listsche, removesche, updatesche } from './API/schedule'
+import { ScheduleType } from './Type/ScheduleType'
+import ListSchedule from './page/admin/Schedule/ListSchedule'
+import AddSchedule from './page/admin/Schedule/AddSchedule'
+import EditSchedule from './page/admin/Schedule/EditSchedule'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
   const [Coachs, setCoachs] = useState<CoachType[]>([])
   const [Posts, setPosts] = useState<PostsType[]>([])
+  const [contacts, setContacts] = useState<ContactType[]>([])
+  const [schedules, setSchedules] = useState<ScheduleType[]>([])
   useEffect(() => {
     const getPosts = async () => {
       const { data } = await Postslist();
@@ -75,6 +84,7 @@ function App() {
 
     }
   }
+  // Packages
   useEffect(() => {
     const getPackagess = async () => {
       const { data } = await listpack();
@@ -82,20 +92,20 @@ function App() {
     }
     getPackagess();
   }, [])
-  //delete product
+  //delete packages
   const onHandleremovePack = async (id: number) => {
     if (window.confirm('Are you sure you want to remove  ?')) {
     removepack(id)
     setPackagess(packagess.filter(item => item.id !== id));
     }
   }
-  //add product
+  //add packages
   const onhandlerAddPack = async (packages: PackagesType) => {
     const { data } = await addpack(packages)
     setPackagess([...packagess, data])
     alert("More success!");
   }
-  // update product
+  // update packages
   const onHandlerUpdatePack = async (packages: PackagesType) => {
     try {
       const { data } = await updatepack(packages);
@@ -106,6 +116,52 @@ function App() {
     } catch (error) {
     }
   }
+// Schedule
+  useEffect(() => {
+    const getSchedules = async () => {
+      const { data } = await listsche();
+      setSchedules(data);
+    }
+    getSchedules();
+  }, [])
+  //delete schedule
+  const onHandleremoveSche = async (id: number) => {
+    if (window.confirm('Are you sure you want to remove  ?')) {
+    removesche(id)
+    setSchedules(schedules.filter(item => item.id !== id));
+    }
+  }
+  //add schedule
+  const onhandlerAddSche = async (schedule: ScheduleType) => {
+    const { data } = await addsche(schedule)
+    setSchedules([...schedules, data])
+    alert("More success!");
+  }
+  // update schedule
+  const onHandlerUpdateSche = async (schedule: ScheduleType) => {
+    try {
+      const { data } = await updatesche(schedule);
+      setSchedules(schedules.map(item => item.id === data.id ? data : item))
+      if (data) {
+        alert("Update successful!");
+      }
+    } catch (error) {
+    }
+  }
+  // Contact
+useEffect(() => {
+  const getContacts = async () => {
+    const { data } = await listcontact();
+    setContacts(data);
+  }
+  getContacts();
+}, [])
+// add contact
+const onhandlerAddContact = async (contact: ContactType) => {
+  const { data } = await addcontact(contact)
+  setPackagess([...contacts, data])
+  alert("More success!");
+}
 
   return (
     <>
@@ -117,7 +173,7 @@ function App() {
                <Route index element={<HomePage />} />
               <Route path='about' element={< AboutPage/>} />
               <Route path='ourteam' element={<Ourteam/>} />
-              <Route path='contact' element={< Contact/>} />
+              <Route path='contact' element={< Contact onAddContact={onhandlerAddContact}/>} />
             </Route>
             {/* admin */}
             <Route path="admin" element={< AdminLayout />} >
@@ -127,12 +183,13 @@ function App() {
               <Route path='Posts' element = {< NewsList PostsList = {Posts}  onRemovePosts ={onHandleRemovePosts} />} />
               <Route path='Posts/add' element={< AddNews  onAddPosts={onHandleAddPosts} subjects={[]}  />} />
               <Route path='Posts/:id/edit' element={< EditNews onUpdatePost={onHandleUpdatePosts} subjects={[]} />} />
+              <Route path='packagess' element={<ListPackages packagess={packagess} onRemovePack={onHandleremovePack} />} />
+              <Route path='packagess/add' element={<AddPackages onAddPack={onhandlerAddPack} />} />
+              <Route path='packagess/:id/edit' element={<EditPackages onUpdatePack={onHandlerUpdatePack} />} />
+              <Route path='schedules' element={<ListSchedule schedules={schedules} onRemoveSche={onHandleremoveSche} />} />
+              <Route path='schedules/add' element={<AddSchedule onAddSche={onhandlerAddSche} />} />
+              <Route path='schedules/:id/edit' element={<EditSchedule onUpdateSche={onHandlerUpdateSche} />} />
             </Route>
-            <Route path='packagess'>
-            <Route index element={<ListPackages packagess={packagess} onRemovePack={onHandleremovePack} />} />
-            <Route path='add' element={<AddPackages onAddPack={onhandlerAddPack} />} />
-            <Route path=':id/edit' element={<EditPackages onUpdatePack={onHandlerUpdatePack} />} />
-          </Route>
         </Routes>
       </div>
     </>

@@ -217,5 +217,15 @@
       "status": "",
       "id": 6
     }
+  ],
+  "schedules": [
+    {
+      "pt_id": "Lê Viết Thi",
+      "contract_id": "2 tháng",
+      "time_id": "5 tiếng",
+      "date": "22-10-2022",
+      "status": "Đang hoạt động",
+      "id": 3
+    }
   ]
 }
