@@ -1,7 +1,7 @@
 import instance from './instance';
 
 export const Postslist = () => {
-    const url = `/news`;
+    const url = `/Posts`;
     return instance.get(url)
 }
 export const addPosts = (Posts: any) => {
