@@ -17,10 +17,40 @@ import AddCoach from './page/admin/Coach/AddCoach'
 import EditCoach from './page/admin/Coach/EditCoach'
 import { CoachType } from './Type/CoachType'
 import { addCoach, listCoach, removeCoach, updateCoach } from './API/Coach'
+import NewsList from './page/admin/NewsList/NewsList'
+import { PostsType } from './Type/PostsType'
+import { addPosts, Postslist, removePosts, updatePosts } from './API/Newlist'
+import AddNews from './page/admin/NewsList/AddNews'
+import EditNews from './page/admin/NewsList/EditNews'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
   const [Coachs, setCoachs] = useState<CoachType[]>([])
+  const [Posts, setPosts] = useState<PostsType[]>([])
+  useEffect(() => {
+    const getPosts = async () => {
+      const { data } = await Postslist();
+      setPosts(data);
+    }
+    getPosts();
+  }, []);
+
+  const onHandleAddPosts = async (Posts: any) => {
+    const { data } = await addPosts(Posts);
+    setPosts([...Posts, data]);
+  }
+  const onHandleRemovePosts = async (id: number) => {
+    removePosts(id);
+    setPosts(Posts.filter(item => item.id !== id));
+  }
+  const onHandleUpdatePosts = async (posts: PostsType) => {
+    try {
+      const { data } = await updatePosts(posts);
+      setPosts(Posts.map(item => item.id === data.id ? posts: item))
+    } catch (error) {
+
+    }
+  }
   useEffect(() => {
     const getCoachs = async () => {
       const { data } = await listCoach();
@@ -94,6 +124,9 @@ function App() {
               <Route path='coach' element={< ListCoach coachs={Coachs} onRemoveCoach={onHandleRemoveCoach} />} />
               <Route path='coach/add' element={< AddCoach  onAddCoach={onHandleAddCoach} subjects={[]}  />} />
               <Route path='coach/:id/edit' element={< EditCoach onUpdateCoach={onHandleUpdateCoach} subjects={[]} />} />
+              <Route path='Posts' element = {< NewsList PostsList = {Posts}  onRemovePosts ={onHandleRemovePosts} />} />
+              <Route path='Posts/add' element={< AddNews  onAddPosts={onHandleAddPosts} subjects={[]}  />} />
+              <Route path='Posts/:id/edit' element={< EditNews onUpdatePost={onHandleUpdatePosts} subjects={[]} />} />
             </Route>
             <Route path='packagess'>
             <Route index element={<ListPackages packagess={packagess} onRemovePack={onHandleremovePack} />} />

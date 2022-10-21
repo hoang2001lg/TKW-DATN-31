@@ -4,19 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { TypeSubject } from "../../../Type/TypeSubject";
 
 type Inputs = {
-  name: string;
-  telephone: number;
-  address: string;
-  email: string;
-  stasus: string;
-  action: string;
-  subject:string
+    id: number;
+    title:string,
+    content:string,
+    subject_id:string,
+    user_id:string,
+    status:string,
 };
-type CoachsAddProps = { 
+type NewsAddProps = {
   subjects: TypeSubject[];
-  onAddCoach: (coachs: Inputs) => void;
+  onAddPosts: (news: Inputs) => void;
 };
-const AddCoach = (props: CoachsAddProps) => {
+const AddNews = (props: NewsAddProps) => {
   const {
     register,
     handleSubmit,
@@ -24,69 +23,70 @@ const AddCoach = (props: CoachsAddProps) => {
   } = useForm<Inputs>();
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<Inputs> = (dataInput) => {
-    props.onAddCoach(dataInput);
-    navigate("/admin/coach");
+    props.onAddPosts(dataInput);
+    navigate("/admin/Posts");
   };
   return (
     <div className="container text-start ">
       <div className="bg-white">
         <strong className=" text-xl uppercase pt-4">
-          Thêm Huấn Luyện Viên
+          Thêm Bài Viết
         </strong>{" "}
         <br />
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md mx-auto">
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
               <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
-                Tên Huấn Luyện Viên<span className="text-red-500">*</span>
+                Tiêu Đề<span className="text-red-500">*</span>
               </label>
               <br />
               <input
                 type="text"
                 className="w-100 p-3 border border-gray-300 p-2 w-full"
-                {...register("name")}
-                placeholder="Tên Huấn Luyện Viên"
+                {...register("title")}
+                placeholder="Title"
               />
             </div>
             <div className="mb-3">
               <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
-                Số Điện Thoại<span className="text-red-500">*</span>
+                Nội Dung<span className="text-red-500">*</span>
               </label>
               <br />
-              <input
-                type="number"
+              <textarea
+                rows={4} cols={50}
+
                 className="w-100 p-3 border border-gray-300 p-2 w-full"
-                {...register("telephone")}
-                placeholder="Số điện thoại"
+                {...register("content")}
+                placeholder="content"
               />
             </div>
             <div className="mb-3">
               <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
-                Địa chỉ<span className="text-red-500">*</span>
-              </label>
-              <br />
-              <input
-                type="text"
-                className="w-100 p-3 border border-gray-300 p-2 w-full"
-                {...register("address")}
-                placeholder="Địa chỉ"
-              />
-            </div>
-            <div className="mb-3">
-              <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
-                Email Huấn Luyện Viên <span className="text-red-500">*</span>
+                ID Bộ Môn<span className="text-red-500">*</span>
               </label>
               <br />
               <input
                 type="text"
                 className="w-100 p-3 border border-gray-300 p-2 w-full"
-                {...register("email")}
-                placeholder="Email Huấn Luyện Viên"
+                {...register("subject_id")}
+                placeholder="subject_id"
+              />
+            </div>
+            <div className="mb-3">
+              <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
+                ID Người Dùng<span className="text-red-500">*</span>
+              </label>
+              <br />
+              <input
+                type="text"
+                className="w-100 p-3 border border-gray-300 p-2 w-full"
+                {...register("user_id")}
+                placeholder="user_id"
               />
             </div>
 
-            <div className="mb-3">
-              <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
+            {/*<div className="mb-3">
+               <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
                 Bộ Môn<span className="text-red-500">*</span>
               </label>
               <br />
@@ -98,7 +98,7 @@ const AddCoach = (props: CoachsAddProps) => {
                     )
                   }
                   )}
-            </div>
+            </div> */}
             <div className="mb-3">
               <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
                 Trạng Thái<span className="text-red-500">*</span>
@@ -107,22 +107,11 @@ const AddCoach = (props: CoachsAddProps) => {
               <input
                 type="text"
                 className="w-100 p-3 border border-gray-300 p-2 w-full"
-                {...register("stasus")}
+                {...register("status")}
                 placeholder="Trạng thái"
               />
             </div>
-            <div className="mb-3">
-              <label className=" uppercase md:text-sm text-left text-xs text-gray-500 text-gray-600 font-semibold mb-1">
-                Hành Động<span className="text-red-500">*</span>
-              </label>
-              <br />
-              <input
-                type="text"
-                className="w-100 p-3 border border-gray-300 p-2 w-full"
-                {...register("action")}
-                placeholder="Hành động"
-              />
-            </div>
+            
             <div className="flex items-center row justify-center text-center md:gap-8 gap-4 pt-5 pb-5 p-5">
               <div className="m-3 col-5">
                 <button className="w-25 bg-secondary rounded-lg shadow-xl font-medium text-white px-4 py-2">
@@ -142,4 +131,4 @@ const AddCoach = (props: CoachsAddProps) => {
   );
 };
 
-export default AddCoach;
+export default AddNews;

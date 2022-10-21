@@ -738,10 +738,10 @@ const AdminLayout = (props: Props) => {
                 <i className="bi bi-box-arrow-in-right" />
                 <span>Đăng xuất</span>
               </a>
-            </li>
+            </li> 
           </ul>
         </aside>
-        <div className="col-10">
+        <div className="col-10 pt-5 mt-5" >
           <Outlet />
         </div>
       </div>
