@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 type Props = {};
 
@@ -584,16 +584,16 @@ const AdminLayout = (props: Props) => {
             </li>
             {/* End Charts Nav */}
             <li className="nav-item">
-              <a
+              <Link
                 className="nav-link collapsed"
                 data-bs-target="#baiviet-nav"
                 data-bs-toggle="collapse"
-                href="#"
+                to="Posts"
               >
                 <i className="bi bi-bar-chart" />
                 <span>Bài viết</span>
                 <i className="bi bi-chevron-down ms-auto" />
-              </a>
+              </Link>
               <ul
                 id="baiviet-nav"
                 className="nav-content collapse "
