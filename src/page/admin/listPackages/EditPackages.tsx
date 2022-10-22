@@ -22,15 +22,15 @@ const EditPackages = (props: EditPackProps) => {
   const navigate = useNavigate()
 
   useEffect(()=>{
-      const getReceptionists= async()=>{
+      const getPackagess= async()=>{
           const{data}= await readpack(id);
           reset(data)
       }
-      getReceptionists();
+      getPackagess();
   },[])
   const onSubmit :SubmitHandler<Input> = data =>{
     props.onUpdatePack(data)
-    navigate('/packagess')
+    navigate('/admin/packagess')
 
   }
   return (
@@ -66,9 +66,9 @@ const EditPackages = (props: EditPackProps) => {
   </div>
 </div>
 <div className="mb-3">
-    <label htmlFor="act" {...register('act')} className="form-label">Hành động</label>
-      <input type="text" className="form-control" id="act" aria-describedby="act" />
-      {errors.act && <span>Bắt buộc phải nhập trường này!</span>}
+    <label htmlFor="act" className="form-label">Hành động</label>
+      <input type="text" {...register('act')} className="form-control" id="act" aria-describedby="act" />
+      {errors.category && <span>Bắt buộc phải nhập trường này!</span>}
     </div>
     <div className='text-center'>
     <button className="btn btn-danger">Cancel</button>
