@@ -29,6 +29,7 @@ import { ScheduleType } from './Type/ScheduleType'
 import ListSchedule from './page/admin/Schedule/ListSchedule'
 import AddSchedule from './page/admin/Schedule/AddSchedule'
 import EditSchedule from './page/admin/Schedule/EditSchedule'
+import Signup from './page/Signup'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
@@ -173,6 +174,7 @@ const onhandlerAddContact = async (contact: ContactType) => {
                <Route index element={<HomePage />} />
               <Route path='about' element={< AboutPage/>} />
               <Route path='ourteam' element={<Ourteam/>} />
+              <Route path='signup' element={<Signup/>} />
               <Route path='contact' element={< Contact onAddContact={onhandlerAddContact}/>} />
             </Route>
             {/* admin */}
