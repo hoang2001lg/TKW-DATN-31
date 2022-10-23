@@ -226,5 +226,13 @@
       "status": "Đang hoạt động",
       "id": 1
     }
+  ],
+  "users": [
+    {
+      "email": "nguyenminhtuk52@gmail.com",
+      "password": "$2a$10$18.2it013Ij8DwYwE4J1teiAc15/lwsAHlK5Kn6JZ5B/Uc5quBSiK",
+      "name": "Minhvn",
+      "id": 1
+    }
   ]
 }
