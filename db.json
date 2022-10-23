@@ -160,12 +160,9 @@
   ],
   "subjects": [
     {
-      "name": "Nguyễn Anh Tú1",
+      "name": "Minhvnn",
+      "description": "100",
       "id": 1
-    },
-    {
-      "name": "Nguyễn Quang Huy",
-      "id": 2
     }
   ],
   "Posts": [

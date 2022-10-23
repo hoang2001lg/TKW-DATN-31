@@ -31,10 +31,16 @@ import AddSchedule from './page/admin/Schedule/AddSchedule'
 import EditSchedule from './page/admin/Schedule/EditSchedule'
 import Signup from './page/Signup'
 import Signin from './page/Signin'
+import { addSubject, listSubject, removeSubject, updateSubject } from './API/subject'
+import { TypeSubject } from './Type/TypeSubject'
+import Editsubject from './page/admin/subject/EditSubject'
+import ListSubject from './page/admin/subject/ListSubject'
+import Addsubject from './page/admin/subject/AddSubject'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
   const [Coachs, setCoachs] = useState<CoachType[]>([])
+  const [subjects, setSubjects] = useState<TypeSubject[]>([])
   const [Posts, setPosts] = useState<PostsType[]>([])
   const [contacts, setContacts] = useState<ContactType[]>([])
   const [schedules, setSchedules] = useState<ScheduleType[]>([])
@@ -164,7 +170,31 @@ const onhandlerAddContact = async (contact: ContactType) => {
   setPackagess([...contacts, data])
   alert("More success!");
 }
+ //Subject start
 
+  useEffect(() => {
+    const getSubject = async () => {
+      const { data } = await listSubject();
+      setSubjects(data);
+    };
+    getSubject();
+  }, [])
+  const onHandleRemoveSubject = (id: number) => {
+    if (window.confirm('Are you sure you want to remove  ?')) {
+      removeSubject(id);
+      setSubjects(subjects.filter(item => item.id !== id));
+    }
+  }
+  const onHandleAddSubject = async (subject: TypeSubject) => {
+    const { data } = await addSubject(subject);
+    setSubjects([...subjects, data]);
+    alert("Success!");
+  }
+  const onHandleUpdateSubject = async (subject: TypeSubject) => {
+    const { data } = await updateSubject(subject);
+    setSubjects(subjects.map(item => item.id == data.id ? data : item));
+  }
+  //Subject End
   return (
     <>
       <div className='App'>
@@ -193,6 +223,9 @@ const onhandlerAddContact = async (contact: ContactType) => {
               <Route path='schedules' element={<ListSchedule schedules={schedules} onRemoveSche={onHandleremoveSche} />} />
               <Route path='schedules/add' element={<AddSchedule onAddSche={onhandlerAddSche} />} />
               <Route path='schedules/:id/edit' element={<EditSchedule onUpdateSche={onHandlerUpdateSche} />} />
+              <Route path='subject' element={<ListSubject  subjects={subjects} onRemove={onHandleRemoveSubject}/>} />
+              <Route path='subject/add' element={<Addsubject onAddSubject={onHandleAddSubject} />} />
+              <Route path='subject/:id/edit' element={<Editsubject  onUpdateSubject={onHandleUpdateSubject} />} />
             </Route>
         </Routes>
       </div>
