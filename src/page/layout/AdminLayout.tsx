@@ -480,7 +480,7 @@ const AdminLayout = (props: Props) => {
                 href=""
               >
                 <i className="bi bi-bar-chart" />
-                <span>Dịch vụ</span>
+                <Link to="subject"><span>Bộ Môn</span></Link>
                 <i className="bi bi-chevron-down ms-auto" />
               </a>
               <ul

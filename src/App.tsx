@@ -33,6 +33,11 @@ import ListContact from './page/admin/Contact/listContact'
 import EditContact from './page/admin/Contact/editContact'
 import Signup from './page/Signup'
 import Signin from './page/Signin'
+import { addSubject, listSubject, removeSubject, updateSubject } from './API/subject'
+import { TypeSubject } from './Type/TypeSubject'
+import ListSubject from './page/admin/subject/ListSubject'
+import Addsubject from './page/admin/subject/AddSubject'
+import Editsubject from './page/admin/subject/EditSubject'
 
 function App() {
   const [packagess, setPackagess] = useState<PackagesType[]>([])
@@ -40,6 +45,8 @@ function App() {
   const [Posts, setPosts] = useState<PostsType[]>([])
   const [contacts, setContacts] = useState<ContactType[]>([])
   const [schedules, setSchedules] = useState<ScheduleType[]>([])
+  const [subjects, setSubjects] = useState<TypeSubject[]>([])
+
   useEffect(() => {
     const getPosts = async () => {
       const { data } = await Postslist();
@@ -59,7 +66,7 @@ function App() {
   const onHandleUpdatePosts = async (posts: PostsType) => {
     try {
       const { data } = await updatePosts(posts);
-      setPosts(Posts.map(item => item.id === data.id ? posts: item))
+      setPosts(Posts.map(item => item.id === data.id ? posts : item))
     } catch (error) {
 
     }
@@ -99,8 +106,8 @@ function App() {
   //delete packages
   const onHandleremovePack = async (id: number) => {
     if (window.confirm('Are you sure you want to remove  ?')) {
-    removepack(id)
-    setPackagess(packagess.filter(item => item.id !== id));
+      removepack(id)
+      setPackagess(packagess.filter(item => item.id !== id));
     }
   }
   //add packages
@@ -120,7 +127,7 @@ function App() {
     } catch (error) {
     }
   }
-// Schedule
+  // Schedule
   useEffect(() => {
     const getSchedules = async () => {
       const { data } = await listsche();
@@ -131,8 +138,8 @@ function App() {
   //delete schedule
   const onHandleremoveSche = async (id: number) => {
     if (window.confirm('Are you sure you want to remove  ?')) {
-    removesche(id)
-    setSchedules(schedules.filter(item => item.id !== id));
+      removesche(id)
+      setSchedules(schedules.filter(item => item.id !== id));
     }
   }
   //add schedule
@@ -153,69 +160,96 @@ function App() {
     }
   }
   // Contact
-useEffect(() => {
-  const getContacts = async () => {
-    const { data } = await listcontact();
-    setContacts(data);
-  }
-  getContacts();
-}, [])
-//delete contact
-const onHandleremoveContact = async (id: number) => {
-  if (window.confirm('Are you sure you want to remove  ?')) {
-  removecontact(id)
-  setContacts(contacts.filter(item => item.id !== id));
-  }
-}
-// add contact
-const onhandlerAddContact = async (contact: ContactType) => {
-  const { data } = await addcontact(contact)
-  setContacts([...contacts, data])
-  alert("More success!");
-}
- // update contact
- const onHandlerUpdateContact = async (contact: ContactType) => {
-  try {
-    const { data } = await updatecontact(contact);
-    setContacts(contacts.map(item => item.id === data.id ? data : item))
-    if (data) {
-      alert("Update successful!");
+  useEffect(() => {
+    const getContacts = async () => {
+      const { data } = await listcontact();
+      setContacts(data);
     }
-  } catch (error) {
+    getContacts();
+  }, [])
+  //delete contact
+  const onHandleremoveContact = async (id: number) => {
+    if (window.confirm('Are you sure you want to remove  ?')) {
+      removecontact(id)
+      setContacts(contacts.filter(item => item.id !== id));
+    }
   }
-}
+  // add contact
+  const onhandlerAddContact = async (contact: ContactType) => {
+    const { data } = await addcontact(contact)
+    setContacts([...contacts, data])
+    alert("More success!");
+  }
+  // update contact
+  const onHandlerUpdateContact = async (contact: ContactType) => {
+    try {
+      const { data } = await updatecontact(contact);
+      setContacts(contacts.map(item => item.id === data.id ? data : item))
+      if (data) {
+        alert("Update successful!");
+      }
+    } catch (error) {
+    }
+  }
+  //Subject start
 
+  useEffect(() => {
+    const getSubject = async () => {
+      const { data } = await listSubject();
+      setSubjects(data);
+    };
+    getSubject();
+  }, [])
+  const onHandleRemoveSubject = (id: number) => {
+    if (window.confirm('Are you sure you want to remove  ?')) {
+      removeSubject(id);
+      setSubjects(subjects.filter(item => item.id !== id));
+    }
+  }
+  const onHandleAddSubject = async (subject: TypeSubject) => {
+    const { data } = await addSubject(subject);
+    setSubjects([...subjects, data]);
+    alert("Success!");
+  }
+  const onHandleUpdateSubject = async (subject: TypeSubject) => {
+    const { data } = await updateSubject(subject);
+    setSubjects(subjects.map(item => item.id == data.id ? data : item));
+  }
+  //Subject End
   return (
     <>
       <div className='App'>
 
-          <Routes>
-            {/* clients */}
-            <Route path='/' element={< WebsiteLayout />} >
-               <Route index element={<HomePage />} />
-              <Route path='about' element={< AboutPage/>} />
-              <Route path='ourteam' element={<Ourteam/>} />
-              <Route path='signup' element={<Signup/>} />
-              <Route path='signin' element={<Signin/>} />
-              <Route path='contact' element={< Contact onAddContact={onhandlerAddContact}/>} />
-            </Route>
-            {/* admin */}
-            <Route path="admin" element={< AdminLayout />} >
-              <Route path='coach' element={< ListCoach coachs={Coachs} onRemoveCoach={onHandleRemoveCoach} />} />
-              <Route path='coach/add' element={< AddCoach  onAddCoach={onHandleAddCoach} subjects={[]}  />} />
-              <Route path='coach/:id/edit' element={< EditCoach onUpdateCoach={onHandleUpdateCoach} subjects={[]} />} />
-              <Route path='Posts' element = {< NewsList PostsList = {Posts}  onRemovePosts ={onHandleRemovePosts} />} />
-              <Route path='Posts/add' element={< AddNews  onAddPosts={onHandleAddPosts} subjects={[]}  />} />
-              <Route path='Posts/:id/edit' element={< EditNews onUpdatePost={onHandleUpdatePosts} subjects={[]} />} />
-              <Route path='packagess' element={<ListPackages packagess={packagess} onRemovePack={onHandleremovePack} />} />
-              <Route path='packagess/add' element={<AddPackages onAddPack={onhandlerAddPack} />} />
-              <Route path='packagess/:id/edit' element={<EditPackages onUpdatePack={onHandlerUpdatePack} />} />
-              <Route path='schedules' element={<ListSchedule schedules={schedules} onRemoveSche={onHandleremoveSche} />} />
-              <Route path='schedules/add' element={<AddSchedule onAddSche={onhandlerAddSche} />} />
-              <Route path='schedules/:id/edit' element={<EditSchedule onUpdateSche={onHandlerUpdateSche} />} />
-              <Route path='contacts' element={<ListContact contacts={contacts} onRemoveContact={onHandleremoveContact} />} />
-              <Route path='contacts/:id/edit' element={<EditContact onUpdateContact={onHandlerUpdateContact} />} />
-            </Route>
+        <Routes>
+          {/* clients */}
+          <Route path='/' element={< WebsiteLayout />} >
+            <Route index element={<HomePage />} />
+            <Route path='about' element={< AboutPage />} />
+            <Route path='ourteam' element={<Ourteam />} />
+            <Route path='signup' element={<Signup />} />
+            <Route path='signin' element={<Signin />} />
+            <Route path='contact' element={< Contact onAddContact={onhandlerAddContact} />} />
+          </Route>
+          {/* admin */}
+          <Route path="admin" element={< AdminLayout />} >
+            <Route path='coach' element={< ListCoach coachs={Coachs} onRemoveCoach={onHandleRemoveCoach} />} />
+            <Route path='coach/add' element={< AddCoach onAddCoach={onHandleAddCoach} subjects={[]} />} />
+            <Route path='coach/:id/edit' element={< EditCoach onUpdateCoach={onHandleUpdateCoach} subjects={[]} />} />
+            <Route path='Posts' element={< NewsList PostsList={Posts} onRemovePosts={onHandleRemovePosts} />} />
+            <Route path='Posts/add' element={< AddNews onAddPosts={onHandleAddPosts} subjects={[]} />} />
+            <Route path='Posts/:id/edit' element={< EditNews onUpdatePost={onHandleUpdatePosts} subjects={[]} />} />
+            <Route path='packagess' element={<ListPackages packagess={packagess} onRemovePack={onHandleremovePack} />} />
+            <Route path='packagess/add' element={<AddPackages onAddPack={onhandlerAddPack} />} />
+            <Route path='packagess/:id/edit' element={<EditPackages onUpdatePack={onHandlerUpdatePack} />} />
+            <Route path='schedules' element={<ListSchedule schedules={schedules} onRemoveSche={onHandleremoveSche} />} />
+            <Route path='schedules/add' element={<AddSchedule onAddSche={onhandlerAddSche} />} />
+            <Route path='schedules/:id/edit' element={<EditSchedule onUpdateSche={onHandlerUpdateSche} />} />
+            <Route path='contacts' element={<ListContact contacts={contacts} onRemoveContact={onHandleremoveContact} />} />
+            <Route path='contacts/:id/edit' element={<EditContact onUpdateContact={onHandlerUpdateContact} />} />
+            <Route path='subject' element={<ListSubject  subjects={subjects} onRemove={onHandleRemoveSubject}/>} />
+              <Route path='subject/add' element={<Addsubject onAddSubject={onHandleAddSubject} />} />
+              <Route path='subject/:id/edit' element={<Editsubject  onUpdateSubject={onHandleUpdateSubject} />} />
+          </Route>
         </Routes>
       </div>
     </>

@@ -27,22 +27,29 @@ const Editsubject = (props: UpdateSubjectProps) => {
   }, [])
   const onSubmit: SubmitHandler<FormInputs> = data => {
     props.onUpdateSubject(data);
-    navigate("/subject");
+    navigate("/admin/subject");
   }
   return (
     <div>
-      <Form action='' onSubmit={handleSubmit(onSubmit)} style={{ maxWidth: '1200px', margin: 'auto' }}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label><h4>Cập Nhật</h4></Form.Label>
-          <Form.Group>
-            <Form.Label>Nhập Tên</Form.Label>
-            <Form.Control type="text" {...register('name', { required: true })} />
-          </Form.Group>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+      <div className="bg-white">
+        <h2 className=" text-xl uppercase pt-4">Thêm Bộ Môn</h2> <br />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">Tên Bộ Môn</label>
+            <input type="text" {...register('name')} className="form-control" id="name" aria-describedby="name" />
+            {errors.name && <span>Bắt buộc phải nhập trường này!</span>}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="act" className="form-label">Mô Tả</label>
+            <input type="text" {...register('description')} className="form-control" id="act" aria-describedby="act" />
+            {errors.description && <span>Bắt buộc phải nhập trường này!</span>}
+          </div>
+          <div className='text-center'>
+            <button className="btn btn-danger">Cancel</button>
+            <button className="btn btn-primary">Add new</button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

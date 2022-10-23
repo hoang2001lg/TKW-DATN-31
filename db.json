@@ -168,10 +168,12 @@
   "subjects": [
     {
       "name": "Nguyễn Anh Tú1",
-      "id": 1
+      "id": 1,
+      "description": "100"
     },
     {
-      "name": "Nguyễn Quang Huy",
+      "name": "Minhvn",
+      "description": "aaa",
       "id": 2
     }
   ],
