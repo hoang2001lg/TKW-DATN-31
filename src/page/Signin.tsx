@@ -13,7 +13,7 @@ const Signin = () => {
     const { register, handleSubmit, formState} = useForm<FormInputs>();
     const navigate = useNavigate();
 
-    const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    const onSubmit: SubmitHandler<FormInputs> = async (data:any) => {
         const { data: user } = await signin(data);
         localStorage.setItem('user', JSON.stringify(user));
         navigate('/');

@@ -12,10 +12,10 @@ type FormInputs = {
 const Signup = () => {
     const { register, handleSubmit, formState } = useForm<FormInputs>();
     const navigate = useNavigate();
-    const onSubmit: SubmitHandler<FormInputs> = data => {
+    const onSubmit: SubmitHandler<FormInputs> = (data:any) => {
         signup(data);
         alert("Đăng Ký Thành Công");
-        // navigate('/signin');
+        navigate('/signin');
     }
     return (
         <div>
