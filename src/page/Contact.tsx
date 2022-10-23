@@ -76,8 +76,8 @@ const Contact = (props: AddContactProps) => {
           <div className="leave-comment">
             <form onSubmit={handleSubmit(onSubmit)}>
               <input type="text" {...register('name')} placeholder="name" />
-              <input type="text" {...register('email')} placeholder="email" />
-              <input type="text" {...register('phone')} placeholder="phone" />
+              <input type="email" {...register('email')} placeholder="email" />
+              <input type="number" {...register('phone')} placeholder="phone" />
               <textarea {...register('comment')} placeholder="comment" defaultValue={""} />
               <button type="submit">Submit</button>
             </form>

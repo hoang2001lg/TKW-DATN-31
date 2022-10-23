@@ -31,18 +31,7 @@ const Header = (props: Props) => {
             <li><Link to="./about">About Us</Link></li>
             <li><Link to="./classes">Classes</Link></li>
             <li><Link to="./services">Services</Link></li>
-            <li><Link to="./team">Our Team</Link></li>
-            <li><Link to="#">Pages</Link>
-              <ul className="dropdown">
-                <li><Link to="./about">About us</Link></li>
-                <li><Link to="./class-timetable">Classes timetable</Link></li>
-                <li><Link to="./bmi-calculator">Bmi calculate</Link></li>
-                <li><Link to="./team">Our team</Link></li>
-                <li><Link to="./gallery">Gallery</Link></li>
-                <li><Link to="./blog">Our blog</Link></li>
-                <li><Link to="./404">404</Link></li>
-              </ul>
-            </li>
+            <li><Link to="./ourteam">Our Team</Link></li>
             <li><Link to="./contact">Contact</Link></li>
           </ul>
         </nav>
@@ -54,8 +43,6 @@ const Header = (props: Props) => {
           <Link to="#"><i className="fa fa-instagram" /></Link>
         </div>
       </div>
-      {/* Offcanvas Menu Section End */}
-      {/* Header Section Begin */}
       <header className="header-section">
         <div className="container-fluid">
           <div className="row">
@@ -70,12 +57,10 @@ const Header = (props: Props) => {
               <nav className="nav-menu">
                 <ul>
                   <li className="active"><Link to="./">Home</Link></li>
-                  <li><Link to="./about">About Us</Link></li>
+                  <li ><Link to="./about">About Us</Link></li>
                   <li><Link to="./classes">Classes</Link></li>
                   <li><Link to="./services">Services</Link></li>
-                  <li><Link to="./team">Our Team</Link></li>
-                  <li><Link to="#">Pages</Link>
-                  </li>
+                  <li><Link to="./ourteam">Our Team</Link></li>
                   <li><Link to="./contact">Contact</Link></li>
                 </ul>
               </nav>

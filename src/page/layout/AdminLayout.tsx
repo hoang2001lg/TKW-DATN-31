@@ -315,7 +315,7 @@ const AdminLayout = (props: Props) => {
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="admin">
                     <i className="bi bi-circle" />
                     <span>Hội viên mới</span>
                   </a>
@@ -371,7 +371,7 @@ const AdminLayout = (props: Props) => {
                 className="nav-link collapsed"
                 data-bs-target="#tables-nav"
                 data-bs-toggle="collapse"
-                href="#"
+                href="schedules"
               >
                 <i className="bi bi-layout-text-window-reverse" />
                 <span>Ngày làm</span>
@@ -440,7 +440,7 @@ const AdminLayout = (props: Props) => {
                 className="nav-link collapsed"
                 data-bs-target="#goitap-nav"
                 data-bs-toggle="collapse"
-                href="#"
+                href="packagess"
               >
                 <i className="bi bi-bar-chart" />
                 <span>Gói tập</span>
@@ -477,7 +477,7 @@ const AdminLayout = (props: Props) => {
                 className="nav-link collapsed"
                 data-bs-target="#dichvu-nav"
                 data-bs-toggle="collapse"
-                href="#"
+                href=""
               >
                 <i className="bi bi-bar-chart" />
                 <span>Dịch vụ</span>
@@ -663,7 +663,7 @@ const AdminLayout = (props: Props) => {
                 className="nav-link collapsed"
                 data-bs-target="#lienlac-nav"
                 data-bs-toggle="collapse"
-                href="#"
+                href="contacts"
               >
                 <i className="bi bi-bar-chart" />
                 <span>Liên hệ</span>
