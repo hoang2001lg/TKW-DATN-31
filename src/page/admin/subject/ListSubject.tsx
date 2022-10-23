@@ -1,38 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom';
 import { TypeSubject } from '../../../Type/TypeSubject';
 
-
 type ListSubject = {
-  subjects: TypeSubject[],
-  onRemove: (id:any) => void
+    subjects : TypeSubject[];
+    onRemove : (id:number) => void
 }
-function ListSubject(props: ListSubject) {
+
+const ListSubject = (props: ListSubject) => {
   return (
     <div>
-      <NavLink to='add'><button className=''>Add</button></NavLink>
-      <table >
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tên</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        {props.subjects?.map((item: any, index) => {
-            return <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{item.name}</td>
-              <td>
-              <Link to={`/subject/${item.id}/edit`}><button >Sửa</button></Link>
-                <button style={{ marginLeft: '10px' }} onClick={() => props.onRemove(item.id)} >Xóa</button>
-              </td>
-            </tr>
-          })}
-        </tbody>
-      </table>
-    </div>
+        <div className="bg-white">
+      <h2 className=" text-xl uppercase pt-4">Danh sách Bộ Môn</h2> <br />
+  <table className="table table-bordered border-primary">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Tên Bộ Môn</th>
+      </tr>
+    </thead>
+    <tbody>
+    {props.subjects.map((item:any, index) => (
+      <tr key={index}>
+        <th scope="row">{item.id}</th>
+        <td>{item.name}</td>
+        <td>
+        <Link className='btn btn-primary' to={`${item.id}/edit`}>Edit</Link>
+        <button className="btn btn-danger" onClick={() => props.onRemove(item.id)}>DELETE</button>
+        </td>
+      </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<div>
+<button type="button" className="btn btn-info"><a href='subject/add' className='text-dark'>Add new</a></button>
+</div>
+</div>
   )
 }
+
 export default ListSubject
