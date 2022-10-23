@@ -22,13 +22,15 @@ import { PostsType } from './Type/PostsType'
 import { addPosts, Postslist, removePosts, updatePosts } from './API/Newlist'
 import AddNews from './page/admin/NewsList/AddNews'
 import EditNews from './page/admin/NewsList/EditNews'
-import { addcontact, listcontact } from './API/contact'
+import { addcontact, listcontact, removecontact, updatecontact } from './API/contact'
 import { ContactType } from './Type/Contact'
 import { addsche, listsche, removesche, updatesche } from './API/schedule'
 import { ScheduleType } from './Type/ScheduleType'
 import ListSchedule from './page/admin/Schedule/ListSchedule'
 import AddSchedule from './page/admin/Schedule/AddSchedule'
 import EditSchedule from './page/admin/Schedule/EditSchedule'
+import ListContact from './page/admin/Contact/listContact'
+import EditContact from './page/admin/Contact/editContact'
 import Signup from './page/Signup'
 import Signin from './page/Signin'
 
@@ -158,11 +160,29 @@ useEffect(() => {
   }
   getContacts();
 }, [])
+//delete contact
+const onHandleremoveContact = async (id: number) => {
+  if (window.confirm('Are you sure you want to remove  ?')) {
+  removecontact(id)
+  setContacts(contacts.filter(item => item.id !== id));
+  }
+}
 // add contact
 const onhandlerAddContact = async (contact: ContactType) => {
   const { data } = await addcontact(contact)
-  setPackagess([...contacts, data])
+  setContacts([...contacts, data])
   alert("More success!");
+}
+ // update contact
+ const onHandlerUpdateContact = async (contact: ContactType) => {
+  try {
+    const { data } = await updatecontact(contact);
+    setContacts(contacts.map(item => item.id === data.id ? data : item))
+    if (data) {
+      alert("Update successful!");
+    }
+  } catch (error) {
+  }
 }
 
   return (
@@ -193,6 +213,8 @@ const onhandlerAddContact = async (contact: ContactType) => {
               <Route path='schedules' element={<ListSchedule schedules={schedules} onRemoveSche={onHandleremoveSche} />} />
               <Route path='schedules/add' element={<AddSchedule onAddSche={onhandlerAddSche} />} />
               <Route path='schedules/:id/edit' element={<EditSchedule onUpdateSche={onHandlerUpdateSche} />} />
+              <Route path='contacts' element={<ListContact contacts={contacts} onRemoveContact={onHandleremoveContact} />} />
+              <Route path='contacts/:id/edit' element={<EditContact onUpdateContact={onHandlerUpdateContact} />} />
             </Route>
         </Routes>
       </div>

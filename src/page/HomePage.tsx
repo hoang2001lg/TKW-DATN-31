@@ -97,7 +97,7 @@ const HomePage = (props: Props) => {
             <div className="col-lg-4 col-md-6">
               <div className="class-item">
                 <div className="ci-pic">
-                  <img src="img/classes/class-1.jpg" alt='' />
+                  <img src="https://res.cloudinary.com/dixysmopg/image/upload/v1666499850/class-1_h1avzp.jpg" alt='' />
                 </div>
                 <div className="ci-text">
                   <span>STRENGTH</span>
@@ -109,7 +109,7 @@ const HomePage = (props: Props) => {
             <div className="col-lg-4 col-md-6">
               <div className="class-item">
                 <div className="ci-pic">
-                  <img src="img/classes/class-2.jpg" alt='' />
+                  <img src="https://res.cloudinary.com/dixysmopg/image/upload/v1666499850/class-2_qweoe3.jpg" alt='' />
                 </div>
                 <div className="ci-text">
                   <span>Cardio</span>
@@ -121,7 +121,7 @@ const HomePage = (props: Props) => {
             <div className="col-lg-4 col-md-6">
               <div className="class-item">
                 <div className="ci-pic">
-                  <img src="img/classes/class-3.jpg" alt='' />
+                  <img src="https://res.cloudinary.com/dixysmopg/image/upload/v1666499851/class-4_xw7gox.jpg" alt='' />
                 </div>
                 <div className="ci-text">
                   <span>STRENGTH</span>
@@ -133,7 +133,7 @@ const HomePage = (props: Props) => {
             <div className="col-lg-6 col-md-6">
               <div className="class-item">
                 <div className="ci-pic">
-                  <img src="img/classes/class-4.jpg" alt='' />
+                  <img src="https://res.cloudinary.com/dixysmopg/image/upload/v1666499850/class-3_sgwox9.jpg" alt='' />
                 </div>
                 <div className="ci-text">
                   <span>Cardio</span>
@@ -145,7 +145,7 @@ const HomePage = (props: Props) => {
             <div className="col-lg-6">
               <div className="class-item">
                 <div className="ci-pic">
-                  <img src="img/classes/class-5.jpg" alt='' />
+                  <img src="https://res.cloudinary.com/dixysmopg/image/upload/v1666499851/class-5_cvanlk.jpg" alt='' />
                 </div>
                 <div className="ci-text">
                   <span>Training</span>
